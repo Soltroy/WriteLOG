@@ -1,8 +1,8 @@
 ﻿#requires -Version 1
-$script:WriteLOGlogFile
-$script:WriteLOGlogComp
-$script:WriteLOGlogThread
-$script:WriteLOGlogOutput
+$script:WriteLOGfile
+$script:WriteLOGcomp
+$script:WriteLOGthread
+$script:WriteLOGoutput
 FUNCTION Write-LOG
 {
 	<#
@@ -58,9 +58,9 @@ FUNCTION Write-LOG
 		#Check for present Values and set defaults if nothing there
 		IF(!$Comp)
 		{
-			IF($WriteLOGlogComp)
+			IF($WriteLOGcomp)
 			{
-				$Comp = $WriteLOGlogComp
+				$Comp = $WriteLOGcomp
 			}
 			ELSE
 			{
@@ -69,22 +69,22 @@ FUNCTION Write-LOG
 		}
 		IF(!$Thread)
 		{
-			IF($WriteLOGlogThread)
+			IF($WriteLOGthread)
 			{
-				$Thread = $WriteLOGlogThread
+				$Thread = $WriteLOGthread
 			}
 			ELSE
 			{
 				$Thread = 0
 			}
 		}
-		IF($WriteLOGlogPath -and !$Path)
+		IF($WriteLOGpath -and !$Path)
 		{
-			$Path = $WriteLOGlogPath
+			$Path = $WriteLOGpath
 		}
-		IF($WriteLOGlogOutput)
+		IF($WriteLOGoutput)
 		{
-			$Output = $WriteLOGlogOutput
+			$Output = $WriteLOGoutput
 		}
 
 		#Check if Function is called from Script and set Variables
@@ -144,25 +144,25 @@ FUNCTION Write-LOG
 
 		#Verbose-Output
 		Write-Verbose -Message "run from Script:    $fromScript"
-		IF($WriteLOGlogPath -or $WriteLOGlogComp -or $WriteLOGlogThread -or $WriteLOGlogOutput)
+		IF($WriteLOGpath -or $WriteLOGcomp -or $WriteLOGthread -or $WriteLOGoutput)
 		{
 			Write-Verbose -Message ''
 			Write-Verbose -Message '--- Settings from Set-LOG ---'
-			IF($WriteLOGlogPath)
+			IF($WriteLOGpath)
 			{
-				Write-Verbose -Message "Set-LOG File:       $WriteLOGlogPath"
+				Write-Verbose -Message "Set-LOG File:       $WriteLOGpath"
 			}
-			IF($WriteLOGlogComp)
+			IF($WriteLOGcomp)
 			{
-				Write-Verbose -Message "Set-LOG-Component:  $WriteLOGlogComp"
+				Write-Verbose -Message "Set-LOG-Component:  $WriteLOGcomp"
 			}
-			IF($WriteLOGlogThread)
+			IF($WriteLOGthread)
 			{
-				Write-Verbose -Message "Set-LOG Thread:     $WriteLOGlogThread"
+				Write-Verbose -Message "Set-LOG Thread:     $WriteLOGthread"
 			}
-			IF($WriteLOGlogOutput)
+			IF($WriteLOGoutput)
 			{
-				Write-Verbose -Message "Set-LOG Output:     $WriteLOGlogOutput"
+				Write-Verbose -Message "Set-LOG Output:     $WriteLOGoutput"
 			}
 		}
 		Write-Verbose -Message ''
@@ -237,41 +237,41 @@ FUNCTION Set-LOG
 	)
 	IF(!$Comp -and !$Thread -and !$Path -and !$Output)
 	{
-		IF(Test-Path -Path variable:\WriteLOGlogComp)
+		IF(Test-Path -Path variable:\WriteLOGcomp)
 		{
-			Clear-Variable -Name WriteLOGlogComp -Scope Script
+			Clear-Variable -Name WriteLOGcomp -Scope Script
 		}
-		IF(Test-Path -Path variable:\WriteLOGlogThread)
+		IF(Test-Path -Path variable:\WriteLOGthread)
 		{
-			Clear-Variable -Name WriteLOGlogThread -Scope Script
+			Clear-Variable -Name WriteLOGthread -Scope Script
 		}
-		IF(Test-Path -Path variable:\WriteLOGlogOutput)
+		IF(Test-Path -Path variable:\WriteLOGoutput)
 		{
-			Clear-Variable -Name WriteLOGlogOutput -Scope Script
+			Clear-Variable -Name WriteLOGoutput -Scope Script
 		}
-		IF(Test-Path -Path variable:\WriteLOGlogPath)
+		IF(Test-Path -Path variable:\WriteLOGpath)
 		{
-			Clear-Variable -Name WriteLOGlogPath -Scope Script
+			Clear-Variable -Name WriteLOGpath -Scope Script
 		}
 	}
 	IF($Comp)
 	{
-		$script:WriteLOGlogComp = $Comp
+		$script:WriteLOGcomp = $Comp
 	}
 	IF($Thread)
 	{
-		$script:WriteLOGlogThread = $Thread
+		$script:WriteLOGthread = $Thread
 	}
 	IF($Path)
 	{
-		$script:WriteLOGlogPath = $Path
+		$script:WriteLOGpath = $Path
 	}
 	IF($Output)
 	{
-		$script:WriteLOGlogOutput = $True
+		$script:WriteLOGoutput = $True
 	}
 	ELSE
 	{
-		$script:WriteLOGlogOutput = $False
+		$script:WriteLOGoutput = $False
 	}
 }
